@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ticketing-service-provider-integration
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+app:
+  base-url:
+    event-provider: https://hub.hackload.kz/event/mnp/event-provider
+
+
+
