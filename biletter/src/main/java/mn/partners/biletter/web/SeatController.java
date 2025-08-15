@@ -20,6 +20,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import mn.partners.biletter.common.model.SeatStatus;
 
 @Tag(name = "Seats", description = "Контроллер для работы с местами")
 @SecurityRequirement(name = "swagger-oauth2")
@@ -38,9 +39,11 @@ public class SeatController {
     public List<ListSeatsResponseItem> listSeats(
         @RequestParam(value = "page", required = false) @Min(1) Long page,
         @RequestParam(value = "pageSize", required = false) @Min(1) @Max(20) Long pageSize,
-        @RequestParam("event_id") @NotNull Long eventId
+        @RequestParam("event_id") @NotNull Long eventId,
+        @RequestParam(value = "row", required = false) @Min(1) Long row,
+        @RequestParam(value = "status", required = false) SeatStatus status
     ) {
-        return readOnlyFacade.getSeats(eventId, page, pageSize);
+        return readOnlyFacade.getSeats(eventId, page, pageSize, row, status);
     }
 
     @PatchMapping("/seats/select")

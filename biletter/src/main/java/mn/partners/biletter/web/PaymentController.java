@@ -2,9 +2,11 @@ package mn.partners.biletter.web;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mn.partners.biletter.business.dto.request.PaymentNotificationPayload;
 import mn.partners.biletter.business.facade.business.PaymentFacade;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -31,5 +33,11 @@ public class PaymentController {
     @ResponseStatus(HttpStatus.OK)
     public void notifyPaymentFailed(@RequestParam("orderId") @NotNull Long orderId) {
         facade.notifyPaymentFailed(orderId);
+    }
+
+    @PostMapping("/payments/notifications")
+    @ResponseStatus(HttpStatus.OK)
+    public void onPaymentUpdates(@Valid @RequestBody PaymentNotificationPayload payload) {
+        facade.onPaymentUpdates(payload);
     }
 }

@@ -3,6 +3,7 @@ package mn.partners.biletter.business.mapper;
 import lombok.RequiredArgsConstructor;
 import mn.partners.biletter.business.dto.request.CreateBookingRequest;
 import mn.partners.biletter.business.dto.response.CreateBookingResponse;
+import mn.partners.biletter.dal.entity.BookingEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,10 +11,14 @@ import org.springframework.stereotype.Component;
 public class BookingMapper {
 
     public CreateBookingResponse buildDto(BookingEntity entity) {
-        return null;
+        return CreateBookingResponse.builder()
+            .id(entity.getId())
+            .build();
     }
 
     public BookingEntity buildEntity(CreateBookingRequest request) {
-        return null;
+        return BookingEntity.builder()
+            .eventId(request.getEventId())
+            .build();
     }
 }

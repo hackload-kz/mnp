@@ -1,6 +1,7 @@
 package mn.partners.biletter.business.facade.business;
 
 import lombok.RequiredArgsConstructor;
+import mn.partners.biletter.business.dto.request.PaymentNotificationPayload;
 import mn.partners.biletter.business.service.PaymentService;
 import org.springframework.stereotype.Component;
 
@@ -16,5 +17,9 @@ public class PaymentFacade {
 
     public void notifyPaymentFailed(Long orderId) {
         paymentService.notifyPaymentFailed(orderId);
+    }
+
+    public void onPaymentUpdates(PaymentNotificationPayload payload) {
+        paymentService.onPaymentUpdates(payload);
     }
 }

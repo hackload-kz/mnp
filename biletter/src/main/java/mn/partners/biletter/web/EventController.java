@@ -2,7 +2,6 @@ package mn.partners.biletter.web;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mn.partners.biletter.business.dto.request.CreateEventRequest;
@@ -13,8 +12,11 @@ import mn.partners.biletter.business.facade.readonly.EventReadOnlyFacade;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
+import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Tag(name = "Events", description = "Контроллер для работы с событиями")
 @SecurityRequirement(name = "swagger-oauth2")
@@ -36,7 +38,11 @@ public class EventController {
 
     @GetMapping("/events")
     @ResponseStatus(HttpStatus.OK)
-    public List<ListEventsResponseItem> listEvents() {
-        return readOnlyFacade.getEvents();
+    public List<ListEventsResponseItem> listEvents(
+        @RequestParam(value = "query", required = false) String query,
+        @RequestParam(value = "date", required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        return readOnlyFacade.getEvents(query, date);
     }
 }

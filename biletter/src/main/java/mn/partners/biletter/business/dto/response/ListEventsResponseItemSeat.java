@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CreateEventResponse {
+public class ListEventsResponseItemSeat {
     private Long id;
 }
+
+
