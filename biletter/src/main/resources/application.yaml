@@ -69,9 +69,10 @@ spring:
       time-to-live: 10m
       cache-null-values: false
   service:
+    provider:
+      url: ${PROVIDER_URL:http://localhost:8082}
     payment:
-      #    payment: https://hub.hackload.kz/payment-provider/common
-      url: ${PAYMENT_URL:http://localhost:8082}
+      url: ${PROVIDER_URL:http://localhost:8083}
 
 
 
@@ -110,7 +111,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
   endpoint:
     health:
       show-details: always
