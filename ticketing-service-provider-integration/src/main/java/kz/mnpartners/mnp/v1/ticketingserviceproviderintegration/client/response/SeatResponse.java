@@ -1,12 +1,12 @@
 package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import lombok.extern.jackson.Jacksonized;
 
 @Data
 @Builder
-@Jacksonized
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SeatResponse {
 
     private String id;

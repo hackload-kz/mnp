@@ -15,7 +15,8 @@ spring:
     property-naming-strategy: SNAKE_CASE
 app:
   base-url:
-    event-provider: https://hub.hackload.kz/event/mnp/event-provider
+    #    event-provider: https://hub.hackload.kz/event/mnp/event-provider
+    event-provider: https://hub.hackload.kz/event-provider/common
 
 management:
   endpoints:
@@ -27,3 +28,6 @@ management:
       show-details: ALWAYS
 server:
   port: 8082
+feign:
+  okhttp:
+    enabled: true
