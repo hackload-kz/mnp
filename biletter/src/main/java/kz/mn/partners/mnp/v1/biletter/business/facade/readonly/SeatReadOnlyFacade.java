@@ -16,7 +16,7 @@ public class SeatReadOnlyFacade {
     private final SeatService seatService;
     private final SeatMapper seatMapper;
 
-    public List<ListSeatsResponseItem> getSeats(Long eventId, Long page, Long pageSize, Long row, SeatStatus status) {
+    public List<ListSeatsResponseItem> getSeats(Long eventId, Integer page, Integer pageSize, Integer row, SeatStatus status) {
         return seatMapper.toListSeatsResponseItemList(seatService.getSeats(eventId, page, pageSize, row, status));
     }
 }

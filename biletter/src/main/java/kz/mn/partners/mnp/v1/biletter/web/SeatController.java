@@ -37,10 +37,10 @@ public class SeatController {
     @GetMapping("/seats")
     @ResponseStatus(HttpStatus.OK)
     public List<ListSeatsResponseItem> listSeats(
-        @RequestParam(value = "page", required = false) @Min(1) Long page,
-        @RequestParam(value = "pageSize", required = false) @Min(1) @Max(20) Long pageSize,
+        @RequestParam(value = "page", required = false) @Min(1) Integer page,
+        @RequestParam(value = "pageSize", required = false) @Min(1) @Max(20) Integer pageSize,
         @RequestParam("event_id") @NotNull Long eventId,
-        @RequestParam(value = "row", required = false) @Min(1) Long row,
+        @RequestParam(value = "row", required = false) @Min(1) Integer row,
         @RequestParam(value = "status", required = false) SeatStatus status
     ) {
         return readOnlyFacade.getSeats(eventId, page, pageSize, row, status);
