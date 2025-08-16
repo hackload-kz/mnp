@@ -16,7 +16,7 @@ public class EventReadOnlyFacade {
     private final EventService eventService;
     private final EventMapper eventMapper;
 
-    public List<ListEventsResponseItem> getEvents(String query, LocalDate date) {
-        return eventMapper.toListEventsResponseItemList(eventService.getEvents(query, date));
+    public List<ListEventsResponseItem> getEvents(String query, LocalDate date, Integer page, Integer pageSize) {
+        return eventMapper.toListEventsResponseItemList(eventService.getEvents(query, date, page, pageSize));
     }
 }

@@ -1,16 +1,35 @@
 package kz.mn.partners.mnp.v1.biletter.dal.repository;
 
 import kz.mn.partners.mnp.v1.biletter.dal.entity.EventEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Repository
 public interface EventRepository  extends JpaRepository<EventEntity, Long> {
-    @Query(value = "SELECT * FROM events e WHERE e.datetime_start::date = :date",
-        nativeQuery = true) //todo дописать запрос с использованием query
-    List<EventEntity> getByFilter(LocalDate date, String query);
+    @Query(
+        value = "SELECT e.* FROM events e " +
+            "WHERE e.datetime_start >= :dateFrom AND e.datetime_start < :dateTo",
+        nativeQuery = true
+    )
+    Page<EventEntity> findByDate(LocalDateTime dateFrom, LocalDateTime dateTo, Pageable pageable);
+
+    @Query(
+        value = "SELECT e.* FROM events e " +
+            "WHERE to_tsquery('russian', :searchQuery) @@ to_tsvector('russian', e.title || ' ' || e.DESCription)",
+        nativeQuery = true
+    )
+    Page<EventEntity> findBySearchQuery(String searchQuery, Pageable pageable);
+
+    @Query(
+        value = "SELECT e.* FROM events e " +
+            "WHERE e.datetime_start >= :dateFrom AND e.datetime_start < :dateTo AND " +
+            "to_tsquery('russian', :searchQuery) @@ to_tsvector('russian', e.title || ' ' || e.DESCription)",
+        nativeQuery = true
+    )
+    Page<EventEntity> findByDateAndSearchQuery(LocalDateTime dateFrom, LocalDateTime dateTo, String searchQuery, Pageable pageable);
 }

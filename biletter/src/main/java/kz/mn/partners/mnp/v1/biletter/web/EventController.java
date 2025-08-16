@@ -2,6 +2,8 @@ package kz.mn.partners.mnp.v1.biletter.web;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import kz.mn.partners.mnp.v1.biletter.business.dto.request.CreateEventRequest;
@@ -41,8 +43,10 @@ public class EventController {
     public List<ListEventsResponseItem> listEvents(
         @RequestParam(value = "query", required = false) String query,
         @RequestParam(value = "date", required = false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+        @RequestParam(value = "page", required = false, defaultValue = "1") @Min(1) Integer page,
+        @RequestParam(value = "pageSize", required = false, defaultValue = "10") @Min(1) @Max(20) Integer pageSize
     ) {
-        return readOnlyFacade.getEvents(query, date);
+        return readOnlyFacade.getEvents(query, date, page, pageSize);
     }
 }
