@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static kz.mn.partners.mnp.v1.biletter.common.constant.Constants.API_V1_PATH;
+
 @Tag(name = "Bookings", description = "Контроллер для работы с бронированиями")
 @SecurityRequirement(name = "swagger-oauth2")
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/api")
+@RequestMapping(API_V1_PATH)
 @Slf4j
 public class BookingController {
 

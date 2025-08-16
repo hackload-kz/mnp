@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import kz.mn.partners.mnp.v1.biletter.common.model.SeatStatus;
 
+import static kz.mn.partners.mnp.v1.biletter.common.constant.Constants.API_V1_PATH;
+
 @Tag(name = "Seats", description = "Контроллер для работы с местами")
 @SecurityRequirement(name = "swagger-oauth2")
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/api")
+@RequestMapping(API_V1_PATH)
 @Slf4j
 public class SeatController {
 

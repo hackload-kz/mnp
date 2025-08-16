@@ -68,7 +68,10 @@ spring:
     redis:
       time-to-live: 10m
       cache-null-values: false
-
+  service:
+    payment:
+      #    payment: https://hub.hackload.kz/payment-provider/common
+      url: ${PAYMENT_URL:http://localhost:8082}
 
 
 
