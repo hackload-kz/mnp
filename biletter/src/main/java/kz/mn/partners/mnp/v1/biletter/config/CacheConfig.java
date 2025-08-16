@@ -20,9 +20,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableCaching
 public class CacheConfig {
-
-    // Локальный кеш для часто используемых данных
-    // Оптимизирован для высокой нагрузки: 100,000 билетов за час
     @Bean
     @Primary
     public CacheManager caffeineCacheManager() {

@@ -4,6 +4,7 @@ import kz.mn.partners.mnp.v1.biletter.business.mapper.EventMapper;
 import lombok.RequiredArgsConstructor;
 import kz.mn.partners.mnp.v1.biletter.business.dto.response.ListEventsResponseItem;
 import kz.mn.partners.mnp.v1.biletter.business.service.EventService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class EventReadOnlyFacade {
     private final EventService eventService;
     private final EventMapper eventMapper;
 
+    @Cacheable(value = "events", key = "#root.targetClass.name " +
+        "+ ':' + #root.methodName + ':q=' " +
+        "+ (#query == null ? '' : #query) " +
+        "+ ':d=' + (#date == null ? '' : #date.toString()) + ':p=' " +
+        "+ (#page == null ? 0 : #page) + ':s=' " +
+        "+ (#pageSize == null ? 0 : #pageSize)", unless = "#result == null || #result.isEmpty()")
     public List<ListEventsResponseItem> getEvents(String query, LocalDate date, Integer page, Integer pageSize) {
         return eventMapper.toListEventsResponseItemList(eventService.getEvents(query, date, page, pageSize));
     }
