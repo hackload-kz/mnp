@@ -1,7 +1,7 @@
-package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.controller;
+package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.controller;
 
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.OrderResponse;
-import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service.OrdersService;
+import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

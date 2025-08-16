@@ -1,8 +1,8 @@
-package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service.impl;
+package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service.impl;
 
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.ProviderFeignClient;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.OrderResponse;
-import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service.OrdersService;
+import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service.OrdersService;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.enums.OrderStatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

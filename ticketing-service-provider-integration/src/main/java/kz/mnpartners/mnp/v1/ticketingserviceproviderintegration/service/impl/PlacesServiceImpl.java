@@ -1,9 +1,9 @@
-package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service.impl;
+package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service.impl;
 
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.ProviderFeignClient;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.OrderResponse;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.SeatResponse;
-import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service.PlacesService;
+import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service.PlacesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

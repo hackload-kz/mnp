@@ -1,4 +1,4 @@
-package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.service;
+package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.service;
 
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.OrderResponse;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.SeatResponse;
