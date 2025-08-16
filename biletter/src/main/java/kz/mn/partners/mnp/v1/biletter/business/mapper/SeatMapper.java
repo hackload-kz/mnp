@@ -34,6 +34,7 @@ public class SeatMapper {
             .row(entity.getSeatRow() != null ? entity.getSeatRow().longValue() : null)
             .number(entity.getNumber() != null ? entity.getNumber().longValue() : null)
             .status(entity.getStatus())
+            .price(entity.getPrice())
             .build();
     }
 }

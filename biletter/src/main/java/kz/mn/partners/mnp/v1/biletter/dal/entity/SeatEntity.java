@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import kz.mn.partners.mnp.v1.biletter.common.model.SeatStatus;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Builder
 @Getter
 @Setter
@@ -30,4 +32,7 @@ public class SeatEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private SeatStatus status;
+
+    @Column(name = "price")
+    private BigDecimal price;
 }
