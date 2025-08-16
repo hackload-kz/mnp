@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>kz.mnpartners.apk.v1</groupId>
+    <groupId>kz.mnpartners.mnp.v1</groupId>
     <artifactId>mnp</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
