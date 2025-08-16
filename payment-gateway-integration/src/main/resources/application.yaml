@@ -1,3 +1,22 @@
 spring:
     application:
         name: payment-gateway-integration
+    boot:
+        admin:
+            client:
+                url: http://localhost:8084
+                username: admin
+                password: admin
+                instance:
+                    prefer-ip: true
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS
+server:
+    port: 8083
