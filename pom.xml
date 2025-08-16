@@ -19,6 +19,7 @@
         <module>ticketing-service-provider-integration</module>
         <module>biletter</module>
         <module>payment-gateway-integration</module>
+        <module>admin</module>
     </modules>
 
     <properties>
@@ -34,6 +35,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
@@ -59,7 +65,6 @@
             <version>${springdoc.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -68,8 +73,14 @@
     </dependencies>
 
     <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>3.2.3</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
-
 
     <build>
         <plugins>

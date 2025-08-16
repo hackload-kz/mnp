@@ -1,11 +1,29 @@
+
+
 spring:
   application:
     name: ticketing-service-provider-integration
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+        username: admin
+        password: admin
+        instance:
+          prefer-ip: true
   jackson:
     property-naming-strategy: SNAKE_CASE
 app:
   base-url:
     event-provider: https://hub.hackload.kz/event/mnp/event-provider
 
-
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8082
