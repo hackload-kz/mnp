@@ -34,12 +34,16 @@ spring:
     open-in-view: false
     properties:
       hibernate:
+        lock:
+          timeout_in_ms: 50
         jdbc:
           timeout: 60
           batch_size: 100
           batch_versioned_data: true
         order_inserts: true
         order_updates: true
+  transaction:
+    default-timeout: 10
 
 
   # Redis configuration for high load
