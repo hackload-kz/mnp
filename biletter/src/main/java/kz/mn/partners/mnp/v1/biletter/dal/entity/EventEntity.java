@@ -1,14 +1,45 @@
 package kz.mn.partners.mnp.v1.biletter.dal.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+import java.time.LocalDateTime;
+
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "event")
 public class EventEntity {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title")
     private String title;
-    private Boolean external;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "datetime_start")
+    private LocalDateTime datetimeStart;
+
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "is_archive")
+    @Builder.Default
+    private Boolean isArchive = false;
+
+    @Column(name = "external")
+    @Builder.Default
+    private Boolean external = false;
 }
 
 
