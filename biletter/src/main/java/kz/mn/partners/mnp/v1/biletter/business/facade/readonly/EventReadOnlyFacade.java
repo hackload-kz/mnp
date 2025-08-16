@@ -1,5 +1,6 @@
 package kz.mn.partners.mnp.v1.biletter.business.facade.readonly;
 
+import kz.mn.partners.mnp.v1.biletter.business.mapper.EventMapper;
 import lombok.RequiredArgsConstructor;
 import kz.mn.partners.mnp.v1.biletter.business.dto.response.ListEventsResponseItem;
 import kz.mn.partners.mnp.v1.biletter.business.service.EventService;
@@ -13,8 +14,9 @@ import java.time.LocalDate;
 public class EventReadOnlyFacade {
 
     private final EventService eventService;
+    private final EventMapper eventMapper;
 
     public List<ListEventsResponseItem> getEvents(String query, LocalDate date) {
-        return eventService.getEvents(query, date);
+        return eventMapper.toListEventsResponseItemList(eventService.getEvents(query, date));
     }
 }

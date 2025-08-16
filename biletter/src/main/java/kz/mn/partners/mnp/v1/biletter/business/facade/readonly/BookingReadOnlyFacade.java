@@ -1,5 +1,6 @@
 package kz.mn.partners.mnp.v1.biletter.business.facade.readonly;
 
+import kz.mn.partners.mnp.v1.biletter.business.mapper.BookingMapper;
 import lombok.RequiredArgsConstructor;
 import kz.mn.partners.mnp.v1.biletter.business.dto.response.ListBookingsResponseItem;
 import kz.mn.partners.mnp.v1.biletter.business.service.BookingService;
@@ -12,8 +13,9 @@ import java.util.List;
 public class BookingReadOnlyFacade {
 
     private final BookingService bookingService;
+    private final BookingMapper bookingMapper;
 
     public List<ListBookingsResponseItem> getBookings() {
-        return bookingService.getBookings();
+        return bookingMapper.toListBookingsResponseItemList(bookingService.getBookings());
     }
 }

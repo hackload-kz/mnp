@@ -1,11 +1,11 @@
 package kz.mn.partners.mnp.v1.biletter.business.service;
 
-import lombok.RequiredArgsConstructor;
 import kz.mn.partners.mnp.v1.biletter.business.dto.request.ReleaseSeatRequest;
 import kz.mn.partners.mnp.v1.biletter.business.dto.request.SelectSeatRequest;
-import kz.mn.partners.mnp.v1.biletter.business.dto.response.ListSeatsResponseItem;
-import org.springframework.stereotype.Service;
 import kz.mn.partners.mnp.v1.biletter.common.model.SeatStatus;
+import kz.mn.partners.mnp.v1.biletter.dal.entity.SeatEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class SeatService {
         return false;
     }
 
-    public List<ListSeatsResponseItem> getSeats(Long eventId, Long page, Long pageSize, Long row, SeatStatus status) {
+    public List<SeatEntity> getSeats(Long eventId, Long page, Long pageSize, Long row, SeatStatus status) {
         return List.of();
     }
 }

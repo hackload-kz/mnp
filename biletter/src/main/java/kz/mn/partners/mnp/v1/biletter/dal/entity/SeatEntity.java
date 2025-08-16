@@ -21,8 +21,8 @@ public class SeatEntity {
     @JoinColumn(name = "event_id")
     private EventEntity event;
 
-    @Column(name = "row")
-    private Integer row;
+    @Column(name = "seat_row")
+    private Integer seatRow;
 
     @Column(name = "number")
     private Integer number;
