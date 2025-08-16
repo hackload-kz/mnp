@@ -14,7 +14,6 @@ import java.util.Objects;
 public class OrdersServiceImpl implements OrdersService {
 
     private final ProviderFeignClient providerFeignClient;
-    private final OrdersService ordersService;
     public OrderResponse createOrder() {
         return providerFeignClient.createOrder();
     }
@@ -24,21 +23,21 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     public void submitOrder(String id) {
-        OrderResponse order = ordersService.getOrder(id);
+        OrderResponse order = providerFeignClient.getOrder(id);
         if(Objects.equals(order.getStatus(), OrderStatusEnum.STARTED)){
             providerFeignClient.submitOrder(id);
         }
     }
 
     public void confirmOrder(String id) {
-        OrderResponse order = ordersService.getOrder(id);
+        OrderResponse order = providerFeignClient.getOrder(id);
         if(Objects.equals(order.getStatus(), OrderStatusEnum.SUBMITTED)) {
             providerFeignClient.confirmOrder(id);
         }
     }
 
     public void confirmCancel(String id) {
-        OrderResponse order = ordersService.getOrder(id);
+        OrderResponse order = providerFeignClient.getOrder(id);
         if(Objects.equals(order.getStatus(), OrderStatusEnum.STARTED) || Objects.equals(order.getStatus(), OrderStatusEnum.SUBMITTED)) {
             providerFeignClient.confirmCancel(id);
         }

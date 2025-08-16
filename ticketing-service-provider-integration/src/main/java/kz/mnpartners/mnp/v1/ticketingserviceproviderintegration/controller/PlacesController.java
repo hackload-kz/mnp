@@ -31,8 +31,8 @@ public class PlacesController {
     }
 
     @PatchMapping(ID_PATH + "/select")
-    private OrderResponse selectSeat(@PathVariable("id") String id){
-        return placesService.selectSeat(id);
+    private OrderResponse selectSeat(@PathVariable("id") String id, @RequestParam String orderId){
+        return placesService.selectSeat(id, orderId);
     }
 
     @PatchMapping(ID_PATH + "/release")

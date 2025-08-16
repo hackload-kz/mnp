@@ -11,7 +11,7 @@ public interface PlacesService {
 
     SeatResponse getSeat(String id);
 
-    OrderResponse selectSeat(String id);
+    OrderResponse selectSeat(String id, String placeRequest);
 
     OrderResponse releaseSeat(String id);
 }

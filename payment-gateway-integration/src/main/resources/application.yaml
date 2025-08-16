@@ -10,6 +10,12 @@ spring:
                 instance:
                     prefer-ip: true
 
+    service:
+        payment:
+            #    payment: https://hub.hackload.kz/payment-provider/common
+            url: https://hub.hackload.kz/event-provider/common
+            merchant_id: mnp
+            merchant_password: PLtqREQEVtt1g4#@FC@bxCe6H5
 management:
     endpoints:
         web:
