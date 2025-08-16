@@ -27,7 +27,7 @@ public class EventService {
     }
 
     public List<EventEntity> getEvents(String query, LocalDate date, Integer page, Integer pageSize) {
-        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by(Sort.Order.desc("id")));
+        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by(Sort.Order.asc("id")));
         String searchQuery = parseQuery(query);
         if (date != null) {
             LocalDateTime dateFrom = date.atStartOfDay();
@@ -38,7 +38,7 @@ public class EventService {
                 return eventRepository.findByDate(dateFrom, dateTo, pageable).getContent();
             }
         } else if (query != null) {
-            return eventRepository.findBySearchQuery(query, pageable).getContent();
+            return eventRepository.findBySearchQuery(searchQuery, pageable).getContent();
         }
         return eventRepository.findAll(pageable).getContent();
     }
