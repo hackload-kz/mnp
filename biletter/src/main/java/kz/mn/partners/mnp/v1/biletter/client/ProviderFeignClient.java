@@ -10,7 +10,7 @@ import java.util.List;
 
 import static kz.mn.partners.mnp.v1.biletter.common.constant.Constants.*;
 
-@FeignClient(name = "ProviderFeignClient", url = "${spring.service.payment.url}")
+@FeignClient(name = "ProviderFeignClient", url = "${spring.service.provider.url}")
 public interface ProviderFeignClient {
 
     @PostMapping(ORDERS_API_V1_PATH)

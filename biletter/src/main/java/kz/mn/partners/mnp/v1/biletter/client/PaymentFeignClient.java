@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import static kz.mn.partners.mnp.v1.biletter.common.constant.Constants.PAYMENT_API_V1_PATH;
 
-@FeignClient(name = "PaymentFeignClient", url = "${spring.service.provider.url}" + PAYMENT_API_V1_PATH)
+@FeignClient(name = "PaymentFeignClient", url = "${spring.service.payment.url}" + PAYMENT_API_V1_PATH)
 public interface PaymentFeignClient {
 
 
