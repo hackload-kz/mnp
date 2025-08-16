@@ -1,0 +1,109 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: biletter
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  # Database configuration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://82.115.42.90:5432/postgres?ApplicationName=biletter&reWriteBatchedInserts=true
+    username: ${DB_USERNAME:mnp}
+    password: ${DB_PASS:Mnpartners1!}
+    hikari:
+      pool-name: ${spring.application.name}-pool
+      maximum-pool-size: 20
+      minimum-idle: 10
+      connection-timeout: 20000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  #admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+        username: admin
+        password: admin
+
+  jpa:
+    hibernate.ddl-auto: validate
+    # High-load JPA configuration
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          timeout: 60
+          batch_size: 100
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+
+
+  # Redis configuration for high load
+  data:
+    redis:
+      host: ${REDIS_HOST:82.115.42.108}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 2000ms
+
+      # High-load Redis configuration
+      lettuce:
+        pool:
+          max-active: 50
+          max-idle: 20
+          min-idle: 10
+          max-wait: 500ms
+  # Cache configuration
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10m
+      cache-null-values: false
+
+
+
+
+  # Logging for performance monitoring
+logging:
+  level:
+    kz:
+      mn:
+        partners:
+          mnp:
+            v1:
+              biletter: INFO
+    org:
+      springframework:
+        cache: DEBUG
+        security: DEBUG
+
+
+  # User cache timing configuration - OPTIMIZED FOR HIGH LOAD (100,000 tickets/hour)
+
+app:
+  cache:
+    user:
+      preload-interval-minutes: 2
+      recent-minutes: 10
+      active-days: 1
+      max-preload-users: 50000
+      preloading-enabled: true
+      statistics-enabled: true
+      aggressive-caching: true
+      cache-cleanup-interval-minutes: 5
+      max-preload-threads: 8
+      batch-size: 1000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
