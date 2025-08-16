@@ -19,6 +19,7 @@
         <module>ticketing-service-provider-integration</module>
         <module>biletter</module>
         <module>payment-gateway-integration</module>
+        <module>gatling</module>
         <module>admin</module>
     </modules>
 
