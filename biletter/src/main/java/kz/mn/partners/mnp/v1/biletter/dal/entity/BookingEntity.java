@@ -24,9 +24,6 @@ public class BookingEntity {
     @JoinColumn(name = "event_id")
     private EventEntity event;
 
-    @Transient
-    private Long eventId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;

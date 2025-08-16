@@ -23,7 +23,6 @@ public class BookingMapper {
 
     public BookingEntity buildEntity(CreateBookingRequest request) {
         return BookingEntity.builder()
-            .eventId(request.getEventId())
             .build();
     }
 
