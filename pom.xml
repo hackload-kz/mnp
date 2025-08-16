@@ -18,6 +18,7 @@
     <modules>
         <module>ticketing-service-provider-integration</module>
         <module>biletter</module>
+        <module>payment-gateway-integration</module>
     </modules>
 
     <properties>
