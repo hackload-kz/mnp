@@ -27,6 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Cacheable(value = "userDetails", key = "#username", unless = "#result == null")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
+
             UserEntity user = userRepository.findByEmail(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
@@ -35,17 +36,25 @@ public class CustomUserDetailsService implements UserDetailsService {
                 throw new UsernameNotFoundException("User is inactive: " + username);
             }
 
+            if (user.getPasswordPlain() == null || user.getPasswordPlain().trim().isEmpty()) {
+                log.error("User {} has no password set", username);
+                throw new UsernameNotFoundException("User has no password set: " + username);
+            }
+
             log.debug("User authenticated successfully: {}", username);
             
             return User.builder()
                     .username(user.getEmail())
-                    .password(user.getPasswordHash())
+                    .password(user.getPasswordPlain())
                     .authorities(Collections.singletonList(new SimpleGrantedAuthority("USER")))
                     .build();
                     
-        } catch (Exception e) {
-            log.error("Error during user authentication for: {}", username, e);
+        } catch (UsernameNotFoundException e) {
+            // Перебрасываем исключения UsernameNotFoundException как есть
             throw e;
+        } catch (Exception e) {
+            log.error("Unexpected error during user authentication for: {}", username, e);
+            throw new UsernameNotFoundException("Authentication error for user: " + username, e);
         }
     }
 }
