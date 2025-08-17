@@ -35,4 +35,7 @@ public class SeatEntity {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "external_seat_id")
+    private String externalSeatId;
 }

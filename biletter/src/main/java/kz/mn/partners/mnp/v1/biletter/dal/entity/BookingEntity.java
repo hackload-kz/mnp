@@ -41,6 +41,9 @@ public class BookingEntity {
     )
     @Builder.Default
     private Set<SeatEntity> seats = new HashSet<>();
+
+    @Column(name = "order_id")
+    private String orderId;
 }
 
 
