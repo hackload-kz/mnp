@@ -1,10 +1,10 @@
 server:
   port: 8081
-  ssl:
-    enabled: true
-    certificate: classpath:/ssl/fullchain2.pem
-    certificate-private-key: classpath:/ssl/privkey2.pem
-  forward-headers-strategy: framework
+#  ssl:
+#    enabled: true
+#    certificate: classpath:/ssl/fullchain2.pem
+#    certificate-private-key: classpath:/ssl/privkey2.pem
+#  forward-headers-strategy: framework
 spring:
   application:
     name: biletter
