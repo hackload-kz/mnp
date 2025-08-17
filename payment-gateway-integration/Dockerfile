@@ -1,16 +1,13 @@
-# ===== Build Stage =====
-FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
+FROM bellsoft/liberica-openjdk-alpine-musl:21
+RUN apk add --no-cache curl tzdata
+
+ARG JAR_FILE=target/*.jar
+
+RUN mkdir /app
+
+COPY ${JAR_FILE} /app/spring-boot-application.jar
+EXPOSE 8083
+ENV APPNAME=payment-gateway-integration
 
 WORKDIR /app
-COPY . .
-
-# Build only this module (with dependencies)
-RUN mvn -B -f pom.xml -pl payment-gateway-integration -am clean package -DskipTests
-
-# ===== Run Stage =====
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-
-COPY --from=builder /app/payment-gateway-integration/target/*-SNAPSHOT.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/spring-boot-application.jar"]

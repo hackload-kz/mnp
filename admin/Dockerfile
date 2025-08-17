@@ -6,8 +6,8 @@ ARG JAR_FILE=target/*.jar
 RUN mkdir /app
 
 COPY ${JAR_FILE} /app/spring-boot-application.jar
-EXPOSE 8081
-ENV APPNAME=billetter
+EXPOSE 8084
+ENV APPNAME=admin
 
 WORKDIR /app
 ENTRYPOINT ["java", "-jar", "/app/spring-boot-application.jar"]
