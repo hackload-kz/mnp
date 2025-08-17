@@ -3,13 +3,14 @@ package kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.request.PlaceRequest;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.OrderResponse;
 import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.client.response.SeatResponse;
+import kz.mnpartners.mnp.v1.ticketingserviceproviderintegration.config.feign.FeignRetryConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "ProviderFeignClient", url = "${spring.service.provider.url}/api/partners/v1/")
+@FeignClient(name = "ProviderFeignClient", url = "${spring.service.provider.url}/api/partners/v1/", configuration = FeignRetryConfig.class)
 public interface ProviderFeignClient {
 
     @PostMapping("orders")
