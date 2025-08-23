@@ -5,6 +5,7 @@ import kz.mn.partners.mnp.v1.biletter.business.dto.response.CreateEventResponse;
 import kz.mn.partners.mnp.v1.biletter.business.mapper.EventMapper;
 import kz.mn.partners.mnp.v1.biletter.business.service.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +15,7 @@ public class EventFacade {
     private final EventService eventService;
     private final EventMapper eventMapper;
 
+    @CacheEvict(value = "events", allEntries = true)
     public CreateEventResponse create(CreateEventRequest request) {
         return eventMapper.buildDto(eventService.create(eventMapper.buildEntity(request)));
     }

@@ -3,6 +3,7 @@ package kz.mn.partners.mnp.v1.biletter.business.service;
 import kz.mn.partners.mnp.v1.biletter.dal.entity.EventEntity;
 import kz.mn.partners.mnp.v1.biletter.dal.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,8 +23,9 @@ public class EventService {
         return eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No event found with id: " + id));
     }
 
+    @CacheEvict(value = "events", allEntries = true)
     public EventEntity create(EventEntity event) {
-        return null;
+        return eventRepository.save(event);
     }
 
     public List<EventEntity> getEvents(String query, LocalDate date, Integer page, Integer pageSize) {

@@ -32,12 +32,7 @@ public class CacheConfig {
                 .softValues() // Используем soft references для экономии памяти
                 .weakKeys()); // Используем weak keys для автоматической очистки
         
-        // Предварительно создаем кэши для лучшей производительности
-        cacheManager.setCacheNames(java.util.Arrays.asList(
-            "currentUsers", "currentUserIds", "userDetails", // Пользователи
-            "users", "userExists", "activeUsers", "recentUsers", "activeUsersByDays", // Списки пользователей
-            "userLists", "userBatches" // Общие списки и батчи
-        ));
+        // Кеши будут создаваться автоматически при первом использовании
         
         return cacheManager;
     }
@@ -47,7 +42,7 @@ public class CacheConfig {
     @Bean
     public CacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(10)) // TTL 10 минут для быстрого обновления
+                .entryTtl(Duration.ofMinutes(5)) // TTL 10 минут для быстрого обновления
                 .serializeKeysWith(RedisSerializationContext.SerializationPair
                         .fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
@@ -56,14 +51,6 @@ public class CacheConfig {
 
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(config)
-                .withCacheConfiguration("users", 
-                    RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(15))) // Пользователи
-                .withCacheConfiguration("recentUsers", 
-                    RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5))) // Недавние пользователи
-                .withCacheConfiguration("activeUsers", 
-                    RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(20))) // Активные пользователи
-                .withCacheConfiguration("userBatches", 
-                    RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(3))) // Батчи пользователей
                 .transactionAware()
                 .build();
     }
