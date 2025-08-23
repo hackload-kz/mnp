@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface PaymentFeignClient {
 
     @PostMapping("PaymentInit/init")
-    PaymentResponse createPayment(@RequestBody PaymentRequest paymentRequest);
+    PaymentResponse initPayment(@RequestBody PaymentRequest paymentRequest);
 
     @PostMapping("PaymentCheck/check")
     PaymentResponse checkPayment(@RequestBody PaymentRequest paymentRequest);

@@ -21,9 +21,9 @@ public class PaymentServiceImpl implements PaymentService {
     private String password;
 
 
-    public PaymentResponse createPayment(PaymentRequest paymentRequest) {
+    public PaymentResponse initPayment(PaymentRequest paymentRequest) {
         addTeamSlugAndToken(paymentRequest,false);
-        return paymentClient.createPayment(paymentRequest);
+        return paymentClient.initPayment(paymentRequest);
     }
 
     public PaymentResponse checkPayment(PaymentRequest paymentRequest) {

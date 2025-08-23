@@ -5,7 +5,7 @@ import kz.mnpartners.mnp.v1.paymentgatewayintegration.client.response.PaymentRes
 
 public interface PaymentService {
 
-    PaymentResponse createPayment(PaymentRequest paymentRequest);
+    PaymentResponse initPayment(PaymentRequest paymentRequest);
 
     PaymentResponse checkPayment(PaymentRequest paymentRequest);
 

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Repository
 public interface EventRepository  extends JpaRepository<EventEntity, Long> {
@@ -32,4 +33,6 @@ public interface EventRepository  extends JpaRepository<EventEntity, Long> {
         nativeQuery = true
     )
     Page<EventEntity> findByDateAndSearchQuery(LocalDateTime dateFrom, LocalDateTime dateTo, String searchQuery, Pageable pageable);
+
+    Optional<EventEntity> findFirstByExternalIs(Boolean external);
 }

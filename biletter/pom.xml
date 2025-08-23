@@ -53,11 +53,5 @@
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>kz.mnpartners.mnp.v1</groupId>
-			<artifactId>payment-gateway-integration</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 </project>

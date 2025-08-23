@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.LockModeType;
+
 import java.util.Optional;
 
 @Repository
@@ -28,4 +29,6 @@ public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT s FROM SeatEntity s WHERE s.id = :id")
     Optional<SeatEntity> findByIdWithLock(@Param("id") Long id);
+    Optional<SeatEntity> findByExternalSeatId(String externalSeatId);
+
 }

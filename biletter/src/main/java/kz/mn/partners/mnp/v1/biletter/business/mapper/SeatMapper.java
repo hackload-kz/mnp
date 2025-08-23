@@ -6,6 +6,7 @@ import kz.mn.partners.mnp.v1.biletter.dal.entity.SeatEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class SeatMapper {
 
     public List<ListSeatsResponseItem> toListSeatsResponseItemList(List<SeatEntity> entities) {
         if (entities == null) {
-            return null;
+            return Collections.emptyList();
         }
         return entities.stream()
             .map(this::toListSeatsResponseItem)

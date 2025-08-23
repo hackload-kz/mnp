@@ -14,14 +14,5 @@ public interface PaymentFeignClient {
 
 
     @PostMapping("/init")
-    PaymentResponse createPayment(@RequestBody PaymentRequest paymentRequest);
-
-    @PostMapping("/check")
-    PaymentResponse checkPayment(@RequestBody PaymentRequest paymentRequest);
-
-    @PostMapping("/confirm")
-    PaymentResponse confirmPayment(@RequestBody PaymentRequest paymentRequest);
-
-    @PostMapping("/cancel")
-    PaymentResponse cancelPayment(@RequestBody PaymentRequest paymentRequest);
+    PaymentResponse initPayment(@RequestBody PaymentRequest paymentRequest);
 }

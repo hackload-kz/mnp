@@ -45,7 +45,8 @@ public class SeatController {
         @RequestParam(value = "row", required = false) @Min(1) Integer row,
         @RequestParam(value = "status", required = false) SeatStatus status
     ) {
-        return readOnlyFacade.getSeats(eventId, page, pageSize, row, status);
+        return readOnlyFacade.
+            getSeats(eventId, page, pageSize, row, status);
     }
 
     @PatchMapping("/seats/select")

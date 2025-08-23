@@ -21,7 +21,7 @@ public class PaymentController {
 
     @PostMapping("/init")
     private PaymentResponse createPayment(@RequestBody PaymentRequest paymentRequest) {
-        return paymentService.createPayment(paymentRequest);
+        return paymentService.initPayment(paymentRequest);
     }
     @PostMapping("/check")
     private PaymentResponse checkPayment(@RequestBody PaymentRequest paymentRequest) {
