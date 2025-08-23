@@ -9,12 +9,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+
+    public Optional<BookingEntity> getByOrderIdWithLock(String orderId) {
+        return bookingRepository.findByOrderIdWithLock(orderId);
+    }
+
+    public BookingEntity getByOrderId(String orderId) {
+        return bookingRepository.findByOrderId(orderId);
+    }
 
     public BookingEntity getById(Long id) {
         return bookingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No booking found with id: " + id));

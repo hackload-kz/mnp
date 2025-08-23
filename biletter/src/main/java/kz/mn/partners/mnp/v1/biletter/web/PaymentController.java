@@ -3,11 +3,11 @@ package kz.mn.partners.mnp.v1.biletter.web;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import jakarta.validation.constraints.NotEmpty;
 import kz.mn.partners.mnp.v1.biletter.business.dto.request.PaymentNotificationPayload;
 import kz.mn.partners.mnp.v1.biletter.business.facade.business.PaymentFacade;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +27,13 @@ public class PaymentController {
 
     @GetMapping("/payments/success")
     @ResponseStatus(HttpStatus.OK)
-    public void notifyPaymentCompleted(@RequestParam("orderId") @NotNull Long orderId) {
+    public void notifyPaymentCompleted(@RequestParam("orderId") @NotEmpty String orderId) {
         facade.notifyPaymentCompleted(orderId);
     }
 
     @GetMapping("/payments/fail")
     @ResponseStatus(HttpStatus.OK)
-    public void notifyPaymentFailed(@RequestParam("orderId") @NotNull Long orderId) {
+    public void notifyPaymentFailed(@RequestParam("orderId") @NotEmpty String orderId) {
         facade.notifyPaymentFailed(orderId);
     }
 
